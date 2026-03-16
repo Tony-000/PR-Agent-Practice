@@ -19,10 +19,13 @@ fallback_language = "zh-TW"
 include_file_filter = [
     "ui.frontend/src/**"     # 前端 React/TS 路徑
 ]
+inline_code_comments = true
 extra_instructions = """
-請務必參考專案 '.github' 下的 'gemini-review-frontend-instructions.md' 中的規範進行審查。
+1. **強制任務**：你必須逐一核對 '.github/gemini-review-frontend-instructions.md' 內列出的『每一項』規則。
+2. **核對清單**：對於 PR 中的每一行代碼，若不符合該 .md 檔中的命名、語法、或架構規範，必須在 Suggestions 中明確指出是違反了哪一條規則，相似的違反項合併在同一個 Suggestion 中回報。
+3. **回覆限制**：請勿略過任何細節，且一律使用繁體中文。
 """
-num_code_suggestions = 5
+num_code_suggestions = 10
 
 [pr_description]
 # --- PR 描述生成規則 (Describe) ---
