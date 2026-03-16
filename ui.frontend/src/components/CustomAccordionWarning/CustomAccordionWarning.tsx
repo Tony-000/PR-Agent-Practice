@@ -45,7 +45,7 @@ const CustomAccordionWarning: FunctionComponent<CustomAccordionWarningProps> = (
     useEffect(() => {
         const warningDiv = warningRef.current;
         const warningContentDiv = warningContentRef.current;
-        const COLLAPSE_HEIGHT = 80;
+        //const COLLAPSE_HEIGHT = 80;
 
         if (!warningContentDiv || !warningDiv) {
             return;
@@ -63,7 +63,7 @@ const CustomAccordionWarning: FunctionComponent<CustomAccordionWarningProps> = (
                 return;
             }
 
-            if (warningContentDiv.clientHeight > COLLAPSE_HEIGHT) {
+            if (warningContentDiv.clientHeight > 80) {
                 warningDiv.classList.add('is-active');
 
                 if (moreIcon.classList.contains('icon-line-minus')) {
@@ -73,7 +73,7 @@ const CustomAccordionWarning: FunctionComponent<CustomAccordionWarningProps> = (
                 }
             }
         } else {
-            if (warningContentDiv.clientHeight > COLLAPSE_HEIGHT) {
+            if (warningContentDiv.clientHeight > 80) {
                 warningDiv.classList.add('is-active');
             }
         }
