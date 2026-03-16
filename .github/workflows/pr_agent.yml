@@ -1,0 +1,29 @@
+name: PR Agent (Gemini)
+on:
+  pull_request:
+    types: [opened, reopened, ready_for_review]
+  issue_comment:
+jobs:
+  pr_agent_job:
+    if: ${{ github.event.sender.type != 'Bot' }}
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+      contents: write
+    name: Run pr agent on every pull request, respond to user comments
+    steps:
+      - name: PR Agent action step
+        id: pragent
+        uses: qodo-ai/pr-agent@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          config__ai_provider: "google_ai_studio"
+          config__model: "gemini/gemini-2.5-flash"
+          config__fallback_models: '["gemini/gemini-2.5-flash"]'
+          config__custom_model_max_tokens: "1000000"
+          config__response_language: "zh-TW"
+          GOOGLE_AI_STUDIO__GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          github_action_config__auto_review: "true"
+          github_action_config__auto_describe: "true"
+          github_action_config__auto_improve: "true"

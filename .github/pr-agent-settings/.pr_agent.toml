@@ -1,0 +1,39 @@
+[config] # in configuration.toml
+model="gemini/gemini-2.5-flash"
+fallback_models=["gemini/gemini-2.5-flash"]
+ignore_file_and_folder_filter = [
+    "node_modules/*",
+    "target/*",
+    "**/*.xml",          # 忽略 AEM 的 content.xml 等檔案
+    "**/*.json",         # 如果不想審查大型 json 檔案
+    "dist/*",
+    "**/*.test.ts"       # 忽略測試檔
+]
+
+[pr_agent]
+fallback_language = "zh-TW"
+
+[pr_reviewer]
+# --- 代碼審查規則 (Review) ---
+# 這裡設定大小寫規範與開發禁令
+include_file_filter = [
+    "ui.frontend/src/**"     # 前端 React/TS 路徑
+]
+extra_instructions = """
+請務必參考專案 '.github' 下的 'gemini-review-frontend-instructions.md' 中的規範進行審查。
+"""
+num_code_suggestions = 5
+
+[pr_description]
+# --- PR 描述生成規則 (Describe) ---
+# 將自動生成的摘要發佈為 PR 留言
+publish_description_as_comment = true
+# 設定生成描述的格式與內容
+add_custom_instructions = """
+請務必使用「繁體中文」進行回覆。
+請依照以下格式產出 PR 摘要：
+1. **改動類型**：標註 [新功能]、[修復 Bug]、[重構] 或 [文件更新]。
+2. **主要變更**：用繁體中文條列式說明此 PR 做了什麼。
+3. **規範檢查**：簡單說明是否符合專案的大小寫命名規範。
+4. **影響範圍**：註明受影響的元件或模組路徑。
+"""
