@@ -1,5 +1,5 @@
 import { FunctionComponent, useEffect, useRef } from 'react';
-import { CustomAccordionWarningProps } from './type';
+import { CustomTestProps } from '../CustomTest/type';
 import DOMPurify from 'dompurify';
 import 'tailwindcss/tailwind.css';
 
@@ -10,7 +10,7 @@ const isInAuthor = () => {
     return isIframe && wcmmode ? true : false;
 }
 
-const CustomTest: FunctionComponent<CustomAccordionWarningProps> = (props) => {
+const CustomTest: FunctionComponent<CustomTestProps> = (props) => {
     const warningRef = useRef<HTMLDivElement | null>(null);
     const warningContentRef = useRef<HTMLDivElement | null>(null);
     const moreTextRef = useRef<HTMLDivElement | null>(null);
@@ -135,9 +135,9 @@ const CustomTest: FunctionComponent<CustomAccordionWarningProps> = (props) => {
     );
 };
 
-export const CustomAccordionWarningEditConfig = {
-    emptyLabel: 'Custom Accordion Warning',
-    isEmpty: function (props: CustomAccordionWarningProps) {
+export const CustomTestEditConfig = {
+    emptyLabel: 'Custom Test',
+    isEmpty: function (props: CustomTestProps) {
         return !props || !props.headline || !props.content;
     },
 };
