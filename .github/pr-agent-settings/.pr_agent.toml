@@ -15,15 +15,17 @@ fallback_language = "zh-TW"
 
 [pr_reviewer]
 # --- 代碼審查規則 (Review) ---
-# 這裡設定大小寫規範與開發禁令
 include_file_filter = [
     "ui.frontend/src/**"     # 前端 React/TS 路徑
 ]
 inline_code_comments = true
 extra_instructions = """
-1. **強制任務**：你必須逐一核對 '.github/gemini-review-frontend-instructions.md' 內列出的『每一項』規則。
-2. **核對清單**：對於 PR 中的每一行代碼，若不符合該 .md 檔中的命名、語法、或架構規範，必須在 Suggestions 中明確指出是違反了哪一條規則，相似的違反項合併在同一個 Suggestion 中回報。
-3. **回覆限制**：請勿略過任何細節，且一律使用繁體中文。
+# 前端與 AEM 代碼審查規範
+
+## 1. 命名規範 (Naming)
+- **CamelCase**: 所有的變數、函式、物件屬性必須使用小駝峰。
+- **PascalCase**: React 元件檔案名稱與定義必須使用大駝峰。
+- **Screaming Snake Case**: 常數必須全大寫並用底線分隔。
 """
 num_code_suggestions = 10
 
